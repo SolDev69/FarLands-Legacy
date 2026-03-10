@@ -3,7 +3,6 @@ package com.example.examplemod.coremod;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Opcodes;
@@ -46,12 +45,12 @@ public class FarTransformer implements IClassTransformer
                     if(ain.getOpcode() == Opcodes.LDC
                             && ((LdcInsnNode)ain).cst instanceof Long && (Long)((LdcInsnNode)ain).cst == 16777216L)
                     {
-                        LogManager.getLogger().info("test");
+                        System.out.println("test");
                         ((LdcInsnNode)ain).cst = Long.MAX_VALUE;
                         pass = true;
                     }
         if(pass)
-            LogManager.getLogger().info("[FarLands] Noise generator patched successfully!");
+            System.out.println("[FarLands] Noise generator patched successfully!");
 
         ClassWriter classWriter = new ClassWriter(ClassWriter.COMPUTE_MAXS);
         classNode.accept(classWriter);

@@ -5,8 +5,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class Config
 {
@@ -32,7 +30,6 @@ public class Config
      * The location of the config file. It is currently located at %mc_dir%/config/farlandsmod.cfg.
      */
     private static final File config = new File("config/farlandsmod.cfg");
-    private static final Logger LOGGER = LogManager.getLogger();
     public static Config instance;
 
     static
@@ -74,7 +71,7 @@ public class Config
             reader.close();
         }catch(Exception e)
         {
-            LOGGER.error("[FarLands]: An error occured while trying to load config!");
+            System.err.println("[FarLands]: An error occured while trying to load config!");
             e.printStackTrace();
         }
     }
@@ -104,7 +101,7 @@ public class Config
             writer.close();
         }catch(Exception e)
         {
-            LOGGER.error("[FarLands]: An error occured while trying to write config!");
+            System.err.println("[FarLands]: An error occured while trying to write config!");
             e.printStackTrace();
         }
     }
@@ -116,7 +113,7 @@ public class Config
             return Integer.parseInt(s);
         }catch(NumberFormatException e)
         {
-            LOGGER.error("[FarLands]: Invaild offset for " + name);
+            System.err.println("[FarLands]: Invaild offset for " + name);
             return 0;
         }
     }
